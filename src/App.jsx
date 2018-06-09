@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import likeStack from "./components/feels-like-mobile/StackNavigator";
 
 class App extends Component {
   render() {
@@ -12,4 +13,6 @@ class App extends Component {
   }
 }
 
-export default App;
+export default likeStack({
+ component: App
+});
