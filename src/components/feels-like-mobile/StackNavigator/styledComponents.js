@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const getStyledComponents = (style = {}) => {
   const View = styled.div`
@@ -25,7 +25,7 @@ const getStyledComponents = (style = {}) => {
       }
     `}
 
-    ${({theme}) => theme.stack && theme.stack.header && `
+    ${({ theme }) => theme.stack && theme.stack.header && `
       && {
         background: ${theme.stack.header.backgroundColor}
       }
@@ -43,7 +43,7 @@ const getStyledComponents = (style = {}) => {
       }
     `}
 
-    ${({theme}) => theme.stack && theme.stack.title && `
+    ${({ theme }) => theme.stack && theme.stack.title && `
       && {
         color: ${theme.stack.title.color}
       }
@@ -53,8 +53,8 @@ const getStyledComponents = (style = {}) => {
   return {
     View,
     Header,
-    Title
-  }
-}
+    Title,
+  };
+};
 
 export default getStyledComponents;

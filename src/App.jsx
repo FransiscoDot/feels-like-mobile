@@ -14,5 +14,5 @@ class App extends Component {
 }
 
 export default likeStack({
- component: App
+ Component: App
 });

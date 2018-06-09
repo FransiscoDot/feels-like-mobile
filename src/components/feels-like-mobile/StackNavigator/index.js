@@ -3,26 +3,26 @@ import createNavigator from '../Navigation';
 import getStyledComponents from './styledComponents';
 import defaultOption from './defaultOptions';
 
-function isStateless(Component) {
-  return typeof Component !== 'string' && !Component.prototype.render
-}
-
 const feelsLikeStack = (navigation) => {
-  navigation = {
+  const navigationProps = {
     ...defaultOption,
     ...navigation,
   };
 
   const Stack = (props) => {
-    const { View, Header, Title } = getStyledComponents(navigation.style);
+    const { View, Header, Title } = getStyledComponents(navigationProps.style);
 
     const newProps = {
       ...props,
     };
 
     const {
-      component, title, headerOnDesktop, detecter,
-    } = navigation;
+      Component,
+      title,
+      headerOnDesktop,
+      detecter,
+      isStateless,
+    } = navigationProps;
 
     const header = (
       <Header>
@@ -32,7 +32,7 @@ const feelsLikeStack = (navigation) => {
               ? typeof title === 'function'
                 ? title(newProps)
                 : title
-              : component.name
+              : Component.name
           }
         </Title>
       </Header>
@@ -48,9 +48,9 @@ const feelsLikeStack = (navigation) => {
             : header
         }
         {
-          isStateless(component)
-            ? component(newProps)
-            : new component(newProps).render()
+          isStateless
+            ? Component(newProps)
+            : new Component(newProps).render()
         }
       </View>
     );

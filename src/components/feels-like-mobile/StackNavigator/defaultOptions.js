@@ -1,3 +1,3 @@
 export default {
-  headerOnDesktop: false
-}
+  headerOnDesktop: false,
+};
