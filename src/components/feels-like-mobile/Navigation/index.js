@@ -9,14 +9,13 @@ const navigation = (createNavigator) => {
   };
 
   const Navigation = (props) => {
-    const isStateless = typeof props.Component !== 'string' && !props.Component.prototype.render;
+
     const newProps = {
       ...props,
-      detecter,
-      isStateless,
+      detecter
     };
 
-    return createNavigator(newProps);
+    return createNavigator(newProps)
   };
 
   return Navigation;

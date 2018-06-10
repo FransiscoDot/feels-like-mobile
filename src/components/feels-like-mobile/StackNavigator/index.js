@@ -20,9 +20,10 @@ const feelsLikeStack = (navigation) => {
       Component,
       title,
       headerOnDesktop,
-      detecter,
-      isStateless,
+      detecter
     } = navigationProps;
+
+    const isStateless = typeof Component !== 'string' && !Component.prototype.render;
 
     const header = (
       <Header>
