@@ -6,6 +6,7 @@ import Stack from "./components/feels-like-mobile/Stack";
 import Tabs from "./components/feels-like-mobile/Tabs";
 import Tab from "./components/feels-like-mobile/Tab";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import FontAwesome from "react-fontawesome";
 
 const Settings = () => (
   <div>
@@ -23,27 +24,49 @@ class Profile extends Component {
   }
 }
 
+const IconCog = (
+  <FontAwesome
+    name='cog'
+    size='lg'
+    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white" }}
+  />
+)
+
+const IconUser = (
+  <FontAwesome
+    name='user'
+    size='lg'
+    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white" }}
+  />
+)
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          {/* <Stack >
-          <Profile />
-          <Settings />
-        </Stack> */}
-          <Tabs>
-            <Tab>
-              <Route path="/settings" component={Settings} />
-              <Link to="/settings">settings</Link>
-            </Tab>
-            <Tab>
-              <Route path="/profile" component={Profile} />
-              <Link to="/profile">profile</Link>
-            </Tab>
-          </Tabs>
-        </div>
+        <Tabs>
+          <Tab
+            name="Settings"
+            icon={IconCog}
+          >
+            <Route path="/settings" component={Settings} />
+            <Link to="/settings" />
+          </Tab>
+          <Tab
+            name="Profile"
+            icon={IconUser}
+          >
+            <Route path="/profile" component={Profile} />
+            <Link to="/profileg" />
+          </Tab>
+          <Tab
+            name="Profile"
+            icon={IconUser}
+          >
+            <Route path="/profile" component={Profile} />
+            <Link to="/profile" />
+          </Tab>
+        </Tabs>
       </Router>
     );
   }
