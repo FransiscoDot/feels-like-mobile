@@ -1,9 +1,11 @@
 import React, { Children, PureComponent } from "react";
 import PropTypes from "prop-types";
-import createNavigator from "../Navigation";
 import styled from "styled-components";
+import Tab from "../Tab";
 
 class Tabs extends PureComponent {
+  static Tab = Tab;
+
   render() {
     const { backgroundColor, children, detecter } = this.props;
 
@@ -22,7 +24,7 @@ class Tabs extends PureComponent {
       height: 100%;
     `;
 
-    const Tabs = styled.div`
+    const TabsContainer = styled.div`
       display: flex;
       justify-content: space-between;
 
@@ -45,78 +47,28 @@ class Tabs extends PureComponent {
             })
           }
         </Component>
-        <Tabs>
+        <TabsContainer>
           {
             childrens.map((tab, i) => {
               return (
                 <React.Fragment key={i}>
-                  {tab}
+                  {React.cloneElement(tab, {detecter: detecter})}
                 </React.Fragment>
               )
             })
           }
-        </Tabs>
+        </TabsContainer>
       </Container>
     )
   }
 }
 
-// const Tabs = ({
-//   backgroundColor = "rgb(85, 26, 139)",
-//   children,
-//   detecter
-// }) => {
-//   const Container = styled.div`
-//     height: 100%;
-//     display: flex;
-//     justify-content: space-between;
-//     flex-direction: column-reverse;
+Tabs.propTypes = {
+  backgroundColor: PropTypes.string
+};
 
-//     ${detecter.ios && `
-//       flex-direction: column;
-//     `}
-//   `;
+Tabs.defaultProps = {
+  backgroundColor: "rgb(85, 26, 139)"
+};
 
-//   const Component = styled.div`
-//     height: 100%;
-//   `;
-
-//   const Tabs = styled.div`
-//     display: flex;
-//     justify-content: space-between;
-
-//     background: ${backgroundColor}
-//   `;
-
-//   let childrens = Children.toArray(children);
-
-//   return (
-//     <Container>
-//       <Component>
-//         {
-//           childrens.map((tab, i) => {
-//             const Route = tab.props.children.filter(c => c.type.name === "Route")[0];
-//             return (
-//               <React.Fragment key={i}>
-//                 {Route}
-//               </React.Fragment>
-//             )
-//           })
-//         }
-//       </Component>
-//       <Tabs>
-//         {
-//           childrens.map((tab, i) => {
-//             return (
-//               <React.Fragment key={i}>
-//                 {tab}
-//               </React.Fragment>
-//             )
-//           })
-//         }
-//       </Tabs>
-//     </Container>
-//   )
-// }
-
-export default createNavigator(Tabs);
+export default Tabs;

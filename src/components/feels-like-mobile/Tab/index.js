@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import TabItem from "../TabItem";
 import { NavLink } from "react-router-dom";
-import withDeviceDetecter from "../Navigation";
 
 const Tab = ({
-  name = "Tab",
-  icon = null,
+  name,
+  icon,
   children,
   detecter
 }) => {
@@ -52,4 +51,19 @@ const Tab = ({
   )
 }
 
-export default withDeviceDetecter(Tab);
+Tab.propTypes = {
+  name: PropTypes.string,
+  icon: PropTypes.node,
+  detecter: PropTypes.shape({
+    ios: PropTypes.bool.isRequired,
+    android: PropTypes.bool.isRequired,
+    desktop: PropTypes.bool.isRequired
+  })
+}
+
+Tab.defaultProps = {
+  name: "Tab",
+  icon: null
+}
+
+export default Tab;

@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
-import likeStack from "./components/feels-like-mobile/StackNavigator";
-import likeTab from "./components/feels-like-mobile/TabNavigator";
-import Stack from "./components/feels-like-mobile/Stack";
 import Tabs from "./components/feels-like-mobile/Tabs";
-import Tab from "./components/feels-like-mobile/Tab";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import FontAwesome from "react-fontawesome";
+import DeviceDetecter from "./components/feels-like-mobile/DeviceDetecter";
 
 const Settings = () => (
   <div>
@@ -44,47 +40,36 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Tabs>
-          <Tab
-            name="Settings"
-            icon={IconCog}
-          >
-            <Route path="/settings" component={Settings} />
-            <Link to="/settings" />
-          </Tab>
-          <Tab
-            name="Profile"
-            icon={IconUser}
-          >
-            <Route path="/profile" component={Profile} />
-            <Link to="/profileg" />
-          </Tab>
-          <Tab
-            name="Profile"
-            icon={IconUser}
-          >
-            <Route path="/profile" component={Profile} />
-            <Link to="/profile" />
-          </Tab>
-        </Tabs>
+        <DeviceDetecter>
+          {(detecter) => (
+            <Tabs detecter={detecter}>
+              <Tabs.Tab
+                name="Settings"
+                icon={IconCog}
+              >
+                <Route path="/settings" component={Settings} />
+                <Link to="/settings" />
+              </Tabs.Tab>
+              <Tabs.Tab
+                name="Profile"
+                icon={IconUser}
+              >
+                <Route path="/profile" component={Profile} />
+                <Link to="/profileg" />
+              </Tabs.Tab>
+              <Tabs.Tab
+                name="Profile"
+                icon={IconUser}
+              >
+                <Route path="/profile" component={Profile} />
+                <Link to="/profile" />
+              </Tabs.Tab>
+            </Tabs>
+          )}
+        </DeviceDetecter>
       </Router>
     );
   }
 }
 
 export default App;
-
-// export default likeStack({
-//  Component: App
-// });
-
-// export default likeTab({
-//   tabs: [
-//     {
-//       Component: App
-//     },
-//     {
-//       Component: Profile
-//     }
-//   ]
-// })

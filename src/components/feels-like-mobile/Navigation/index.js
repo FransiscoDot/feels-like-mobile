@@ -1,6 +1,7 @@
 import MobileDetect from 'mobile-detect';
+import React from 'react';
 
-const navigation = (createNavigator) => {
+const withDeviceDetecter = Component => {
   const md = new MobileDetect(window.navigator.userAgent);
   const detecter = {
     ios: md.os() === 'iOS',
@@ -8,17 +9,18 @@ const navigation = (createNavigator) => {
     desktop: md.os() === null,
   };
 
-  const Navigation = (props) => {
-
+  const ComponentWithContext = props => {
     const newProps = {
       ...props,
       detecter
     };
 
-    return createNavigator(newProps)
-  };
+    return (
+      <Component {...newProps} />
+    )
+  }
 
-  return Navigation;
-};
+  return ComponentWithContext;
+}
 
-export default navigation;
+export default withDeviceDetecter;
