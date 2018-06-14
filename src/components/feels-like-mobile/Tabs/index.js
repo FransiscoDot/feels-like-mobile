@@ -7,7 +7,7 @@ class Tabs extends PureComponent {
   static Tab = Tab;
 
   render() {
-    const { backgroundColor, children, detecter } = this.props;
+    const { backgroundColor, children, detecter, renderOnDesktop } = this.props;
 
     const Container = styled.div`
       height: 100%;
@@ -32,6 +32,9 @@ class Tabs extends PureComponent {
     `;
 
     let childrens = Children.toArray(children);
+    const renderTabs = !detecter.desktop || renderOnDesktop
+      ? true
+      : false;
 
     return (
       <Container>
@@ -47,28 +50,34 @@ class Tabs extends PureComponent {
             })
           }
         </Component>
-        <TabsContainer>
-          {
-            childrens.map((tab, i) => {
-              return (
-                <React.Fragment key={i}>
-                  {React.cloneElement(tab, {detecter: detecter})}
-                </React.Fragment>
-              )
-            })
-          }
-        </TabsContainer>
+        {
+          renderTabs && (
+            <TabsContainer>
+              {
+                childrens.map((tab, i) => {
+                  return (
+                    <React.Fragment key={i}>
+                      {React.cloneElement(tab, { detecter: detecter })}
+                    </React.Fragment>
+                  )
+                })
+              }
+            </TabsContainer>
+          )
+        }
       </Container>
     )
   }
 }
 
 Tabs.propTypes = {
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  renderOnDesktop: PropTypes.bool
 };
 
 Tabs.defaultProps = {
-  backgroundColor: "rgb(85, 26, 139)"
+  backgroundColor: "rgb(85, 26, 139)",
+  renderOnDesktop: true
 };
 
 export default Tabs;
