@@ -59,7 +59,7 @@ class App extends Component {
               </Tabs.Tab>
               <Tabs.Tab
                 name="Profile"
-                icon={IconUser}
+                icon={() => console.log("raised")}
               >
                 <Route path="/profile" component={Profile} />
                 <Link to="/profile" />

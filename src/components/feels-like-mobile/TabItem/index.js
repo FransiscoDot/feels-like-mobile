@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import createNavigator from "../Navigation";
 import styled from "styled-components";
 
 const TabItem = ({
@@ -35,10 +34,14 @@ const TabItem = ({
     `}
   `;
 
+  const renderIcon = icon && detecter.ios;
+
   return (
     <Container>
       {
-        icon && detecter.ios && icon
+        renderIcon && typeof icon === "function"
+          ? icon()
+          : icon
       }
       <Name>{name}</Name>
     </Container>
@@ -47,8 +50,11 @@ const TabItem = ({
 
 TabItem.propTypes = {
   name: PropTypes.string.isRequired,
-  icon: PropTypes.node,
+  icon: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func
+  ]),
   detecter: PropTypes.object.isRequired
 }
 
-export default createNavigator(TabItem);
+export default TabItem;

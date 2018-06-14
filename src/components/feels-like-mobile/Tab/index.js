@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 const Tab = ({
   name,
   icon,
+  backgroundColor,
   children,
   detecter
 }) => {
@@ -19,6 +20,7 @@ const Tab = ({
     display: flex;
     justify-content: center;
     align-items: center;
+    background: ${backgroundColor};
 
     &:hover {
       background: rgba(0, 0, 0, 0.2);
@@ -45,6 +47,7 @@ const Tab = ({
         <TabItem
           name={name}
           icon={icon}
+          detecter={detecter}
         />
       </StyledLink>
     </React.Fragment>
@@ -53,7 +56,11 @@ const Tab = ({
 
 Tab.propTypes = {
   name: PropTypes.string,
-  icon: PropTypes.node,
+  icon: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func
+  ]),
+  backgroundColor: PropTypes.string,
   detecter: PropTypes.shape({
     ios: PropTypes.bool.isRequired,
     android: PropTypes.bool.isRequired,
@@ -63,7 +70,8 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   name: "Tab",
-  icon: null
+  icon: null,
+  backgroundColor: "inherit"
 }
 
 export default Tab;
