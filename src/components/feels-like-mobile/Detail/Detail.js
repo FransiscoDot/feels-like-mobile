@@ -8,7 +8,9 @@ import { PrimaryText } from "../Text";
 const Detail = ({
   title,
   background,
+  renderOnDesktop,
   onBackArrowPress,
+  detecter,
   children
 }) => {
   const Header = styled.div`
@@ -30,17 +32,28 @@ const Detail = ({
     }
   `;
 
+  let renderDetail = true;
+  if (detecter) {
+    renderDetail = !detecter.desktop || renderOnDesktop
+      ? true
+      : false
+  }
+
   return (
     <Fragment>
-      <Header>
-        <IconContainer onClick={() => onBackArrowPress ? onBackArrowPress() : null}>
-          <FontAwesome
-            name='chevron-left'
-            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white", marginRight: 5 }}
-          />
-        </IconContainer>
-        <PrimaryText>{title}</PrimaryText>
-      </Header>
+      {
+        renderDetail && (
+          <Header>
+            <IconContainer onClick={() => onBackArrowPress ? onBackArrowPress() : null}>
+              <FontAwesome
+                name='chevron-left'
+                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white", marginRight: 5 }}
+              />
+            </IconContainer>
+            <PrimaryText>{title}</PrimaryText>
+          </Header>
+        )
+      }
       {
         children
       }
@@ -51,12 +64,14 @@ const Detail = ({
 Detail.propTypes = {
   title: PropTypes.string,
   background: PropTypes.string,
+  renderOnDesktop: PropTypes.bool,
   onBackArrowPress: PropTypes.func
 }
 
 Detail.defaultProps = {
   title: "Stack",
   background: "rgb(85, 26, 139)",
+  renderOnDesktop: false,
   onBackArrowPress: null
 }
 

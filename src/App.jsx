@@ -7,23 +7,35 @@ import FontAwesome from "react-fontawesome";
 import DeviceDetecter from "./components/feels-like-mobile/DeviceDetecter";
 
 const Settings = () => (
-  <Stack
-    title="Settings"
-  >
-    <div>
-      <p>settings</p>
-    </div>
-  </Stack>
+  <DeviceDetecter>
+    {(detecter) => (
+      <Stack
+        title="Settings"
+        detecter={detecter}
+      >
+        <div>
+          <p>settings</p>
+        </div>
+      </Stack>
+    )}
+  </DeviceDetecter>
 )
 
 class Profile extends Component {
   render() {
     return (
-      <Detail onBackArrowPress={() => console.log("gg")}>
-        <div>
-          <p>profile</p>
-        </div>
-      </Detail>
+      <DeviceDetecter>
+        {(detecter) => (
+          <Detail
+            detecter={detecter}
+            onBackArrowPress={() => console.log("gg")}
+          >
+            <div>
+              <p>profile</p>
+            </div>
+          </Detail>
+        )}
+      </DeviceDetecter>
     )
   }
 }

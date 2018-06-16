@@ -6,6 +6,7 @@ import { PrimaryText } from "../Text";
 const Stack = ({
   title,
   background,
+  renderOnDesktop,
   detecter,
   children,
 }) => {
@@ -16,11 +17,22 @@ const Stack = ({
     background: ${background}
   `;
 
+  let renderStack = true;
+  if (detecter) {
+    renderStack = !detecter.desktop || renderOnDesktop
+      ? true
+      : false
+  }
+
   return (
     <Fragment>
-      <Header>
-        <PrimaryText>{title}</PrimaryText>
-      </Header>
+      {
+        renderStack && (
+          <Header>
+            <PrimaryText>{title}</PrimaryText>
+          </Header>
+        )
+      }
       {
         children
       }
@@ -30,12 +42,14 @@ const Stack = ({
 
 Stack.propTypes = {
   title: PropTypes.string,
-  background: PropTypes.string
+  background: PropTypes.string,
+  renderOnDesktop: PropTypes.bool
 }
 
 Stack.defaultProps = {
   title: "Stack",
-  background: "rgb(85, 26, 139)"
+  background: "rgb(85, 26, 139)",
+  renderOnDesktop: false
 }
 
 export default Stack;
