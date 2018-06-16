@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import Tabs from "./components/feels-like-mobile/Tabs";
+import Stack from "./components/feels-like-mobile/Stack";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import FontAwesome from "react-fontawesome";
 import DeviceDetecter from "./components/feels-like-mobile/DeviceDetecter";
 
 const Settings = () => (
-  <div>
-    <p>settings</p>
-  </div>
+  <Stack
+    title="Settings"
+  >
+    <div>
+      <p>settings</p>
+    </div>
+  </Stack>
 )
 
 class Profile extends Component {

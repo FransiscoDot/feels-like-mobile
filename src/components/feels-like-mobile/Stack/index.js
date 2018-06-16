@@ -1,21 +1,39 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import createNavigator from "../Navigation";
+import styled from "styled-components";
+import { PrimaryText } from "../Text";
 
 const Stack = ({
-  title = "Stack",
-  children
+  title,
+  background,
+  detecter,
+  children,
 }) => {
+  const Header = styled.div`
+    padding: 8px 10px;
+    background: ${background}
+  `;
+
   return (
     <Fragment>
-      <p>{title}</p>
-      {children}
+      <Header>
+        <PrimaryText>{title}</PrimaryText>
+      </Header>
+      {
+        children
+      }
     </Fragment>
   )
 }
 
 Stack.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string,
+  background: PropTypes.string
 }
 
-export default createNavigator(Stack);
+Stack.defaultProps = {
+  title: "Stack",
+  background: "rgb(85, 26, 139)"
+}
+
+export default Stack;
