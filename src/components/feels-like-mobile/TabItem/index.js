@@ -39,9 +39,15 @@ const TabItem = ({
   return (
     <Container>
       {
-        renderIcon && typeof icon === "function"
-          ? icon()
-          : icon
+        renderIcon && (
+          <React.Fragment>
+            {
+              typeof icon === "function"
+                ? icon()
+                : icon
+            }
+          </React.Fragment>
+        )
       }
       <Name>{name}</Name>
     </Container>

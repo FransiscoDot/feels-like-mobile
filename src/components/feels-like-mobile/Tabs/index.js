@@ -77,7 +77,7 @@ Tabs.propTypes = {
 
 Tabs.defaultProps = {
   backgroundColor: "rgb(85, 26, 139)",
-  renderOnDesktop: true
+  renderOnDesktop: false
 };
 
 export default Tabs;
