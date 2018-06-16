@@ -10,6 +10,8 @@ const Stack = ({
   children,
 }) => {
   const Header = styled.div`
+    display: flex;
+    align-items: center;
     padding: 8px 10px;
     background: ${background}
   `;
