@@ -5,6 +5,42 @@ import Detail from "./components/feels-like-mobile/Detail";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import FontAwesome from "react-fontawesome";
 import DeviceDetecter from "./components/feels-like-mobile/DeviceDetecter";
+import Menu, { MenuItem } from "./components/feels-like-mobile/Menu";
+
+const IconCog = (
+  <FontAwesome
+    name='cog'
+    size='lg'
+    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white" }}
+  />
+)
+
+const IconUser = (
+  <FontAwesome
+    name='user'
+    size='lg'
+    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white" }}
+  />
+)
+
+const itemCog = (
+  <MenuItem
+    icon={IconCog}
+  />
+)
+
+const ItemProfile = (
+  <MenuItem
+    icon={IconUser}
+    onClick={() => console.log("icon clicked")}
+  />
+)
+
+const MenuBelt = (
+  <Menu
+    items={[ItemProfile, itemCog]}
+  />
+)
 
 const Settings = () => (
   <DeviceDetecter>
@@ -12,6 +48,7 @@ const Settings = () => (
       <Stack
         title="Settings"
         detecter={detecter}
+        menu={MenuBelt}
       >
         <div>
           <p>settings</p>
@@ -39,22 +76,6 @@ class Profile extends Component {
     )
   }
 }
-
-const IconCog = (
-  <FontAwesome
-    name='cog'
-    size='lg'
-    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white" }}
-  />
-)
-
-const IconUser = (
-  <FontAwesome
-    name='user'
-    size='lg'
-    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white" }}
-  />
-)
 
 class App extends Component {
   render() {

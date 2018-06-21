@@ -69,7 +69,7 @@ Detail.propTypes = {
 }
 
 Detail.defaultProps = {
-  title: "Stack",
+  title: "Detail",
   background: "rgb(85, 26, 139)",
   renderOnDesktop: false,
   onBackArrowPress: null
