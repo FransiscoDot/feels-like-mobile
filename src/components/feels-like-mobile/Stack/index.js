@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Header from "../Header";
 import { PrimaryText } from "../Text";
 
 const Stack = ({
@@ -11,7 +12,7 @@ const Stack = ({
   detecter,
   children,
 }) => {
-  const Header = styled.div`
+  const Header_ = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,10 +32,11 @@ const Stack = ({
     <Fragment>
       {
         renderStack && (
-          <Header>
-            <PrimaryText>{title}</PrimaryText>
-            {menu && menu}
-          </Header>
+          <Header
+            title={title}
+            backgroundColor={background}
+            menu={menu}
+          />
         )
       }
       {

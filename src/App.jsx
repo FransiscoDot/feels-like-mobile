@@ -66,6 +66,7 @@ class Profile extends Component {
           <Detail
             detecter={detecter}
             onBackArrowPress={() => console.log("gg")}
+            menu={MenuBelt}
           >
             <div>
               <p>profile</p>

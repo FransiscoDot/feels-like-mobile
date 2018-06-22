@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import FontAwesome from "react-fontawesome";
 
+import Header from "../Header";
 import { PrimaryText } from "../Text";
 
 const Detail = ({
@@ -10,10 +11,11 @@ const Detail = ({
   background,
   renderOnDesktop,
   onBackArrowPress,
+  menu,
   detecter,
   children
 }) => {
-  const Header = styled.div`
+  const Header_ = styled.div`
     display: flex;
     align-items: center;
     padding: 8px 10px;
@@ -43,15 +45,17 @@ const Detail = ({
     <Fragment>
       {
         renderDetail && (
-          <Header>
-            <IconContainer onClick={() => onBackArrowPress ? onBackArrowPress() : null}>
+          <Header
+            title={title}
+            backgroundColor={background}
+            menu={menu}
+            backIcon={(
               <FontAwesome
                 name='chevron-left'
                 style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)', color: "white", marginRight: 5 }}
               />
-            </IconContainer>
-            <PrimaryText>{title}</PrimaryText>
-          </Header>
+            )}
+          />
         )
       }
       {
@@ -65,14 +69,16 @@ Detail.propTypes = {
   title: PropTypes.string,
   background: PropTypes.string,
   renderOnDesktop: PropTypes.bool,
-  onBackArrowPress: PropTypes.func
+  onBackArrowPress: PropTypes.func,
+  menu: PropTypes.node
 }
 
 Detail.defaultProps = {
   title: "Detail",
   background: "rgb(85, 26, 139)",
   renderOnDesktop: false,
-  onBackArrowPress: null
+  onBackArrowPress: null,
+  menu: null
 }
 
 export default Detail;
