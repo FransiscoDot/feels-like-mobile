@@ -1,11 +1,10 @@
 import React, { Children, PureComponent } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Tab from "../Tab";
+
+import withDeviceDetecter from "../DeviceDetecter";
 
 class Tabs extends PureComponent {
-  static Tab = Tab;
-
   render() {
     const { backgroundColor, children, detecter, renderOnDesktop } = this.props;
 
@@ -80,4 +79,4 @@ Tabs.defaultProps = {
   renderOnDesktop: false
 };
 
-export default Tabs;
+export default withDeviceDetecter(Tabs);

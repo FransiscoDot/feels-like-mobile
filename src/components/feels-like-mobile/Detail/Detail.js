@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import FontAwesome from "react-fontawesome";
 
+import withDeviceDetecter from "../DeviceDetecter"
 import Header from "../Header";
-import { PrimaryText } from "../Text";
 
 const Detail = ({
   title,
@@ -81,4 +81,4 @@ Detail.defaultProps = {
   menu: null
 }
 
-export default Detail;
+export default withDeviceDetecter(Detail);

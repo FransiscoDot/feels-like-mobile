@@ -8,17 +8,17 @@ const detecter = {
   desktop: md.os() === null,
 };
 
-const DeviceDetecter = ({
-  render,
-  children
-}) => {
-  return (
-    <Fragment>
-      {
-        children(detecter)
-      }
-    </Fragment>
-  )
+export const withDeviceDetecter = Component => {
+  return props => {
+    const newProps = {
+      detecter,
+      ...props
+    }
+
+    return (
+      <Component {...newProps}/>
+    )
+  }
 }
 
-export default DeviceDetecter;
+export default withDeviceDetecter;

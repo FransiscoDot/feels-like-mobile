@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import withDeviceDetecter from "../DeviceDetecter"
 import Header from "../Header";
-import { PrimaryText } from "../Text";
 
 const Stack = ({
   title,
@@ -47,7 +48,7 @@ const Stack = ({
 }
 
 Stack.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   background: PropTypes.string,
   renderOnDesktop: PropTypes.bool,
   menu: PropTypes.object
@@ -60,4 +61,4 @@ Stack.defaultProps = {
   menu: null
 }
 
-export default Stack;
+export default withDeviceDetecter(Stack);
