@@ -19,14 +19,20 @@ const Header = ({
     background: ${backgroundColor}
   `;
 
+  const IconTextContainer = styled.div`
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+  `;
+
   return (
     <Container>
-      <div>
+      <IconTextContainer>
         {backIcon && backIcon}
         <PrimaryText>
           {title}
         </PrimaryText>
-      </div>
+      </IconTextContainer>
       {menu && menu}
     </Container>
   )
