@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import FontAwesome from "react-fontawesome";
 
 import withDeviceDetecter from "../DeviceDetecter"
@@ -15,24 +14,6 @@ const Detail = ({
   detecter,
   children
 }) => {
-  const Header_ = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 8px 10px;
-    background: ${background};
-  `;
-
-  const IconContainer = styled.div`
-    display: flex;
-
-    ${onBackArrowPress && `
-      cursor: pointer;
-    `}
-
-    &:hover {
-      opacity: 0.6;
-    }
-  `;
 
   let renderDetail = true;
   if (detecter) {

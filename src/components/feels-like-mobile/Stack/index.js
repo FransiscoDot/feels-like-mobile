@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 import withDeviceDetecter from "../DeviceDetecter"
 import Header from "../Header";
@@ -13,14 +12,6 @@ const Stack = ({
   detecter,
   children,
 }) => {
-  const Header_ = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 10px;
-
-    background: ${background}
-  `;
 
   let renderStack = true;
   if (detecter) {

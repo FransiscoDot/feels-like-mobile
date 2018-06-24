@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import MobileDetect from 'mobile-detect';
 
 const md = new MobileDetect(window.navigator.userAgent);
